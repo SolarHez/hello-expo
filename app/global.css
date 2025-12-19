@@ -1,0 +1,13 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+@import "nativewind/theme";
+
+.btn-primary {
+  @apply bg-blue-400 px-5 py-2 rounded-xl text-white active:bg-red-300;
+}
+
+.container {
+  @apply flex-1 justify-center items-center;
+}
