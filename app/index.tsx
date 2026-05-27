@@ -1,5 +1,6 @@
 import { useThemeStore } from "@/store/theme";
 import { Image } from "expo-image";
+import { Link } from "expo-router";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { Camera } from "lucide-react-native";
 import { useState } from "react";
@@ -11,11 +12,13 @@ import {
   Text,
   View,
 } from "react-native";
+import Animated, { FadeInLeft, FadeOutLeft } from "react-native-reanimated";
 
 const videoSource =
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
 export default function Index() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [animatedShow, setAnimatedShow] = useState(false);
   const { toggleTheme } = useThemeStore();
   const player = useVideoPlayer(videoSource, (player) => {
     player.loop = true;
@@ -71,6 +74,31 @@ export default function Index() {
         ></Image>
         <Camera color="red" size={48}></Camera>
         <VideoView player={player} allowsFullscreen allowsPictureInPicture />
+        <Pressable
+          className="btn-primary"
+          onPress={() => setAnimatedShow(!animatedShow)}
+        >
+          <Text className=" text-white">
+            {animatedShow ? "隐藏" : "显示"}动画
+          </Text>
+        </Pressable>
+        {animatedShow && (
+          <Animated.View
+            entering={FadeInLeft.duration(800)
+              .springify()
+              .withCallback(() => {
+                console.log("动画完成");
+              })}
+            exiting={FadeOutLeft.duration(800).springify()}
+          >
+            <Text className="font-bold text-blue-400">
+              我是一个字体动画效果
+            </Text>
+          </Animated.View>
+        )}
+        <Link href="/demo" className="btn-primary">
+          跳转至 DEMO
+        </Link>
       </ScrollView>
       <Modal
         className="flex-1"

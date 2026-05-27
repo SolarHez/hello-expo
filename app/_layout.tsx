@@ -18,6 +18,10 @@ export default function RootLayout() {
           name="index"
           options={{ headerShown: true, title: "EXPO 组件测试" }}
         />
+        <Stack.Screen
+          name="demo"
+          options={{ headerShown: true, title: "DEMO" }}
+        />
       </Stack>
     </ThemeProvider>
   );
