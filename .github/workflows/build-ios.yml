@@ -28,7 +28,7 @@ jobs:
       - name: Install Expo & dependencies
         run: |
           pnpm install -g expo
-          pnpm ci
+          pnpm install --frozen-lockfile
 
       - name: Add expo-dev-client
         run: npx expo install expo-dev-client
