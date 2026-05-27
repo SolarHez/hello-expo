@@ -9,7 +9,9 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.solarhez.example",
+      "deploymentTarget": "13.0"
     },
     "android": {
       "adaptiveIcon": {
