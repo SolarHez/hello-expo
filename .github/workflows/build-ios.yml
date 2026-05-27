@@ -22,10 +22,13 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install pnpm # 步骤3：专门安装 pnpm 管理器
+        uses: pnpm/action-setup@v4 # 使用社区提供的 pnpm 安装插件
+
       - name: Install Expo & dependencies
         run: |
-          npm install -g expo
-          npm ci
+          pnpm install -g expo
+          pnpm ci
 
       - name: Add expo-dev-client
         run: npx expo install expo-dev-client
