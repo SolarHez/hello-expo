@@ -46,12 +46,17 @@ jobs:
           SAFE_NAME=$(echo $RAW_NAME | tr -cd '[:alnum:]_')
           echo "APP_NAME=$SAFE_NAME" >> $GITHUB_ENV
 
+      - name: Clean build cache
+        run: |
+          rm -rf ios/build
+          rm -rf build
+
       - name: Build iOS archive (unsigned)
         run: |
           xcodebuild \
             -workspace ios/$APP_NAME.xcworkspace \
             -scheme $APP_NAME \
-            -configuration Debug clean archive \
+            -configuration Release \
             -destination 'generic/platform=iOS' \
             -archivePath build/$APP_NAME.xcarchive \
             CODE_SIGNING_ALLOWED=NO \
